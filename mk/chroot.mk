@@ -114,13 +114,13 @@ $(BUILD)/chroot: $(BUILD)/debootstrap
 
 	# install apple-bce
 	git clone https://github.com/t2linux/apple-bce-drv /usr/src/apple-bce-r183.c884d9c
-	echo 'PACKAGE_NAME="apple-bce"
-  PACKAGE_VERSION="r183.c884d9c"
-  MAKE[0]="make KVERSION=$kernelver"
-  CLEAN="make clean"
-  BUILT_MODULE_NAME[0]="apple-bce"
-  DEST_MODULE_LOCATION[0]="/kernel/drivers/misc"
-  AUTOINSTALL="yes"' > /usr/src/apple-bce-r183.c884d9c
+	echo 'PACKAGE_NAME="apple-bce"' > /usr/src/apple-bce-r183.c884d9c
+  	echo 'PACKAGE_VERSION="r183.c884d9c"' > /usr/src/apple-bce-r183.c884d9c
+  	echo 'MAKE[0]="make KVERSION=$kernelver"' > /usr/src/apple-bce-r183.c884d9c
+  	echo 'CLEAN="make clean"' > /usr/src/apple-bce-r183.c884d9c
+  	echo 'BUILT_MODULE_NAME[0]="apple-bce"' > /usr/src/apple-bce-r183.c884d9c
+  	echo 'DEST_MODULE_LOCATION[0]="/kernel/drivers/misc"' > /usr/src/apple-bce-r183.c884d9c
+  	echo 'AUTOINSTALL="yes"' > /usr/src/apple-bce-r183.c884d9c
   	ls /boot
 	dkms status
 	dkms install -m apple-bce -v r183.c884d9c
