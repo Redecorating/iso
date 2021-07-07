@@ -112,6 +112,19 @@ $(BUILD)/chroot: $(BUILD)/debootstrap
 		CLEAN=1 \
 		/iso/chroot.sh"
 
+	# install apple-bce
+	git clone https://github.com/t2linux/apple-bce-drv /usr/src/apple-bce-r183.c884d9c
+	echo 'PACKAGE_NAME="apple-bce"
+  PACKAGE_VERSION="r183.c884d9c"
+  MAKE[0]="make KVERSION=$kernelver"
+  CLEAN="make clean"
+  BUILT_MODULE_NAME[0]="apple-bce"
+  DEST_MODULE_LOCATION[0]="/kernel/drivers/misc"
+  AUTOINSTALL="yes"' > /usr/src/apple-bce-r183.c884d9c
+  	ls /boot
+	dkms status
+	dkms install -m apple-bce -v r183.c884d9c
+	dkms status
 	# Remove apt preferences
 	sudo rm "$@.partial/etc/apt/preferences.d/pop-iso"
 
